@@ -33,3 +33,4 @@ urllib3==2.3.0
 zope.event==5.0
 zope.interface==7.2
 gunicorn
+dj-database-url
