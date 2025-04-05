@@ -4,6 +4,7 @@ from rest_framework import status
 from .models import Log
 from .serializers import LogSerializer
 from json2html import json2html  # Import json2html
+import logging
 
 class LogListView(APIView):
     """
@@ -22,9 +23,11 @@ class LogListView(APIView):
     
     def post(self, request):
         # Handle POST request to create new logs
+        logger = logging.getLogger(__name__)
+        logger.warning(f"Received data: {request.data}")
+        print(request.data)
         serializer = LogSerializer(data=request.data, many=True)
         if serializer.is_valid():
             serializer.save()  # Save the logs to the database
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Return the created logs in JSON format
-        print(request.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Return errors if validation fails
