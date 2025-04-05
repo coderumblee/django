@@ -26,4 +26,5 @@ class LogListView(APIView):
         if serializer.is_valid():
             serializer.save()  # Save the logs to the database
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Return the created logs in JSON format
+        print(request.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Return errors if validation fails
