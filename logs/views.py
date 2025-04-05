@@ -23,6 +23,9 @@ class LogListView(APIView):
     
     def post(self, request):
         # Handle POST request to create new logs
+
+        print("Raw request body:", request.body)  # Debug line
+        print("Parsed data:", request.data)       # Debug line
         logger = logging.getLogger(__name__)
         logger.warning(f"Received data: {request.data}")
         print(request.data)
